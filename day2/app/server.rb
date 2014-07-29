@@ -1,5 +1,4 @@
 require 'sinatra'
-# require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
 require 'sinatra/partial'
@@ -23,7 +22,4 @@ set :views, Proc.new { File.join(root, "views") }
 use Rack::Flash
 use Rack::MethodOverride
 
-# register Sinatra::Partial
 set :partial_template_engine, :erb
-
-# class BookmarkManager < Sinatra::Base
