@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'sinatra'
 gem 'data_mapper'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'dm-postgres-adapter'
 gem 'rack-flash3'
 gem 'sinatra-partial'
