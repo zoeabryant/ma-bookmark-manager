@@ -10,7 +10,7 @@ env = ENV["RACK_ENV"] || "development"
 
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 DataMapper.finalize
-DataMapper.auto_upgrade!
+DataMapper.auto_migrate!
 
 class BookmarkManager < Sinatra::Base
 
@@ -54,7 +54,7 @@ class BookmarkManager < Sinatra::Base
 			session[:user_id] = @user.id
 			redirect to('/')
 		else
-			flash[:notice] = "Sorry, your passwords don't match"
+			flash.now[:errors] = @user.errors.full_messages
 			erb :"users/new"
 		end
 

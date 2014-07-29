@@ -1,7 +1,12 @@
 <h1>Please sign up</h1>
 
-<% if flash[:notice] %>
-	<div id="notice"><%= flash[:notice] %></div>
+<% if flash[:errors] && !flash[:errors].empty? %>
+	Sorry, there were the following problems with the form.
+	<ul id="errors">
+		<% flash[:errors].each do |error| %>
+		<li><%= error %></li>
+		<% end %>
+	</ul>
 <% end %>
 
 <form action="/users" method="post">
