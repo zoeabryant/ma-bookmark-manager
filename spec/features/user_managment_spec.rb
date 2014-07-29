@@ -66,3 +66,32 @@ feature "User signs up" do
 
 end
 
+feature "User forgets password" do
+
+	before do
+		User.create(email: "test@test.com",
+					password: "test",
+					password_confirmation: "test")
+	end
+
+	scenario "Requests a password recovery token" do
+		user = User.first(email: 'test@test.com')
+		request_new_password
+		expect(user.password_token).not_to be nil
+	end
+
+	scenario "Visits their token page and resets password" do
+		user = User.first(email: 'test@test.com')
+		user.password_token = "LOTSOFLETTERS"
+
+		request_new_password
+		reset_a_password
+
+		expect(user.password_token).to be nil
+		expect(user.password_token_timestamp).to be nil
+
+		sign_in('test@test.com', 'newpassword')
+		expect(page).to have_content("Welcome, test@test.com")
+	end
+
+end

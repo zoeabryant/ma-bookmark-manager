@@ -5,6 +5,7 @@ get '/users/new' do
 end
 
 post '/users' do
+
 	@user = User.new(email: params[:email],
 		password: params[:password],
 		password_confirmation: params[:password_confirmation])
@@ -16,4 +17,27 @@ post '/users' do
 		erb :"users/new"
 	end
 
+end
+
+get '/users/reset_password' do
+	erb :"users/reset_password"
+end
+
+post '/users/request_password_reset' do
+	generate_password_token_for params[:email]
+	# puts user.inspect
+
+	redirect('/')
+end
+
+get '/users/reset_password/:token' do
+	@token = params[:token]
+	erb :"users/reset_password_with_token"
+end
+
+def generate_password_token_for email
+	user = User.first(email: email)
+	user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+	user.password_token_timestamp = Time.now
+	user.save
 end
