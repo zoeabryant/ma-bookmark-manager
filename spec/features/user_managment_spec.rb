@@ -1,6 +1,10 @@
 require 'spec_helper'
 require_relative 'helpers/session'
 
+def reload(resource)
+	resource.model.get(resource.id)
+end
+
 include SessionHelpers
 
 feature "User signs in" do
@@ -81,12 +85,15 @@ feature "User forgets password" do
 	end
 
 	scenario "Visits their token page and resets password" do
-		user = User.first(email: 'test@test.com')
+		user = User.first(email: "test@test.com")
 		user.password_token = "LOTSOFLETTERS"
+		user.password_token_timestamp = Time.now
+		user.save
 
-		request_new_password
-		reset_a_password
+		expect(user.password_token).not_to be nil
+		reset_password
 
+		user = reload(user)
 		expect(user.password_token).to be nil
 		expect(user.password_token_timestamp).to be nil
 

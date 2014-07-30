@@ -13,8 +13,8 @@ class User
 	property :id, Serial
 	property :email, String, :unique => true, :message => "This email is already taken"
 	property :password_digest, Text
-	property :password_token, Text
-	property :password_token_timestamp, Text
+	property :password_token, Text, allow_nil: true
+	property :password_token_timestamp, Text, allow_nil: true
 
 	def password=(password)
 		@password = password

@@ -19,20 +19,29 @@ post '/users' do
 
 end
 
-get '/users/reset_password' do
-	erb :"users/reset_password"
+get '/users/reset_password/request' do
+	erb :"users/reset_password/request"
 end
 
-post '/users/request_password_reset' do
+post '/users/reset_password' do
 	generate_password_token_for params[:email]
-	# puts user.inspect
-
 	redirect('/')
 end
 
-get '/users/reset_password/:token' do
+get '/users/reset_password/token/:token' do
 	@token = params[:token]
-	erb :"users/reset_password_with_token"
+	erb :"users/reset_password/token/with_token"
+end
+
+post '/users/reset_password/token' do
+	user = User.first(password_token: params[:password_token])
+
+	user.update(password: params[:password],
+		password_confirmation: params[:password_confirmation],
+		password_token: nil,
+		password_token_timestamp: nil)
+
+	redirect('/')
 end
 
 def generate_password_token_for email

@@ -11,7 +11,7 @@ module SessionHelpers
 				password = "oranges!",
 				password_confirmation = "oranges!")
 		visit '/users/new'
-		# expect(page.status_code).to eq(200)
+		expect(page.status_code).to eq(200)
 		fill_in :email, with: email
 		fill_in :password, with: password
 		fill_in :password_confirmation, with: password_confirmation
@@ -19,16 +19,17 @@ module SessionHelpers
 	end
 
 	def request_new_password(email = "test@test.com")
-		visit '/users/reset_password'
+		visit '/users/reset_password/request'
 		expect(page.status_code).to eq(200)
 		fill_in :email, with: email
 		click_button "Reset Password"
 	end
 
-	def reset_a_password(password_token = "LOTSOFLETTERS",
+	def reset_password(password_token = "LOTSOFLETTERS",
 						password = "newpassword",
 						password_confirmation = "newpassword")
-		visit "/users/reset_password/#{password_token}"
+		# puts "/users/reset_password/token/#{password_token}"
+		visit "/users/reset_password/token/#{password_token}"
 		expect(page.status_code).to eq(200)
 		fill_in :password_token, with: password_token
 		fill_in :password, with: password
