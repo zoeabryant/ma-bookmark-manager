@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
+require 'rest-client'
 require 'sinatra/partial'
 
 require_relative 'models/link'

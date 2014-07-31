@@ -78,7 +78,7 @@ feature "User forgets password" do
 					password_confirmation: "test")
 	end
 
-	scenario "Requests a password recovery token" do
+	scenario "Requests a password recovery token and sends an email" do
 		user = User.first(email: 'test@test.com')
 		request_new_password
 		expect(user.password_token).not_to be nil

@@ -58,5 +58,15 @@ def generate_password_token_for email
 	user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
 	user.password_token_timestamp = Time.now
 	user.save
+	send_password_message_to email, user.password_token
 	user.password_token
+end
+
+def send_password_message_to email, password_token
+	RestClient.post "https://api:#{ENV["MAILGUN_API_KEY"]}"\
+	"@api.mailgun.net/v2/app27923439.mailgun.org/messages",
+	:from => "Excited User <me@app27923439.mailgun.org>",
+	:to => email,
+	:subject => "Password Reset",
+	:text => "Please go to the following URL to reset your password /users/reset_password/token/#{password_token}"
 end
