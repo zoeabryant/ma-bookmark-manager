@@ -65,7 +65,7 @@ end
 def send_password_message_to email, password_token
 	RestClient.post "https://api:#{ENV["MAILGUN_API_KEY"]}"\
 	"@api.mailgun.net/v2/app27923439.mailgun.org/messages",
-	:from => "Excited User <me@app27923439.mailgun.org>",
+	:from => "Bookmarks Manager <me@app27923439.mailgun.org>",
 	:to => email,
 	:subject => "Password Reset",
 	:text => "Please go to the following URL to reset your password /users/reset_password/token/#{password_token}"
