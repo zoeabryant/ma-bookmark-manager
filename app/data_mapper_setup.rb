@@ -1,6 +1,10 @@
 env = ENV["RACK_ENV"] || "development"
 
-DataMapper.setup(:default, "postgres://qxxtoiirwkpbrx:WYNH9sLMUNz5N7hCoACj0nImkx@ec2-107-20-191-205.compute-1.amazonaws.com:5432/d9b84p4h4p2pi1")
-# DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+if env == 'production'
+	DataMapper.setup(:default, ENV["HEROKU_POSTGRESQL_MAUVE_URL"])
+else
+	DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+end
+
 DataMapper.finalize
 DataMapper.auto_migrate!
