@@ -1,0 +1,204 @@
+/*
+	NAVIGATION
+	cmd f to jump to
+	00. Global
+	01. Global: Buttons and links
+	02. Elements: Header
+	xx. Ref
+*/
+
+/* 00. Global */
+	body {
+		font-size: 16px;
+		width: 100%;
+	}
+
+	.wrapper {
+		width: 80%;
+		margin: 0px auto;
+	}
+/* / */
+
+/* 01. Global: Buttons and links */
+	.btn, input[type="submit"] {
+		font-size: 1.5em;
+		text-decoration: none;
+		text-align: center;
+
+		display: inline-block;
+		padding: 0.3em 0.7em;
+
+		border-radius: 10px;
+	}
+
+	.btn:hover, input[type="submit"]:hover {
+		padding: 0.3em 0.5em;
+		font-weight: bold;
+		padding: 0.3em 0.5em;
+	}
+
+	input[type="submit"].btn_simple {
+		text-decoration: underline;
+		padding: 0 0.1em;
+		background: none;
+		color: #DFA512;
+		border: 0px;
+		font-size: 1em;
+	}
+	input[type="submit"].btn_simple:hover {
+		background: none;
+		font-weight: normal;
+		color: #d22a2a;
+	}
+
+	form[name="sign_out"] {
+		padding: 13px 0px;
+	}
+
+	.btn-warning {
+		color: #333333;
+
+		border: 2px solid #ea3d36;
+		background-color: #d22a2a;
+
+		background-image: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(0, #d22a2a),
+			color-stop(1, #ea3d36)
+		);
+		background-image: -o-linear-gradient(bottom, #d22a2a 0%, #ea3d36 100%);
+		background-image: -moz-linear-gradient(bottom, #d22a2a 0%, #ea3d36 100%);
+		background-image: -webkit-linear-gradient(bottom, #d22a2a 0%, #ea3d36 100%);
+		background-image: -ms-linear-gradient(bottom, #d22a2a 0%, #ea3d36 100%);
+		background-image: linear-gradient(to bottom, #d22a2a 0%, #ea3d36 100%);
+	}
+
+	.btn-warning:hover {
+		background-color: #ea3d36;
+	}
+
+	.btn-positive, input[type="submit"] {
+		color: #333333;
+
+		border: 2px solid #DFA512;
+		background-color: #EAB134;
+
+		background-image: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(0, #EAB134),
+			color-stop(1, #DFA512)
+		);
+		background-image: -o-linear-gradient(bottom, #EAB134 0%, #DFA512 100%);
+		background-image: -moz-linear-gradient(bottom, #EAB134 0%, #DFA512 100%);
+		background-image: -webkit-linear-gradient(bottom, #EAB134 0%, #DFA512 100%);
+		background-image: -ms-linear-gradient(bottom, #EAB134 0%, #DFA512 100%);
+		background-image: linear-gradient(to bottom, #EAB134 0%, #DFA512 100%);
+	}
+
+	.btn-positive:hover, input[type="submit"]:hover {
+		background-color: #DFA512;
+	}
+
+	.btn-neutral {
+		color: #333333;
+
+		border: 2px solid #068b85;
+		background-color: #068b85;
+
+		background-image: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(0, #068b85),
+			color-stop(1, #0eaaa6)
+		);
+		background-image: -o-linear-gradient(bottom, #068b85 0%, #0eaaa6 100%);
+		background-image: -moz-linear-gradient(bottom, #068b85 0%, #0eaaa6 100%);
+		background-image: -webkit-linear-gradient(bottom, #068b85 0%, #0eaaa6 100%);
+		background-image: -ms-linear-gradient(bottom, #068b85 0%, #0eaaa6 100%);
+		background-image: linear-gradient(to bottom, #068b85 0%, #0eaaa6 100%);
+	}
+
+	.btn-neutral:hover {
+		background-color: #0eaaa6;
+	}
+/* / */
+
+/* 02. Elements: Header */
+	header.main {
+		display: block;
+		width: 100%;
+
+		background-color: #333;
+		border-bottom: 4px #9b156e solid;
+	}
+
+	header.main .inner {
+		display: block;
+		position: relative;
+		width: 80%;
+		padding: 15px 10%;
+		overflow: auto;
+	}
+
+	nav.not_logged_in, #logo, nav.user-links {
+		float: left;
+		width: 49%;
+	}
+	nav.not_logged_in, nav.user-links {
+		text-align: right;
+	}
+	header.main form {
+		display: inline-block;
+	}
+	.welcome-message {
+		margin: 15px 20px 0 0;
+		font-size: 1.1em;
+		font-family: 'Questrial', sans-serif;
+		color: #e0f1ff;
+	}
+	.welcome-message strong {
+		color: #eab134;
+	}
+
+	#logo a {
+		font-family: 'Questrial', sans-serif;
+		color: #e0f1ff;
+		font-size: 2.8em;
+		text-decoration: none;
+	}
+	#logo a:hover {
+		color: #eab134;
+	}
+
+	nav.not_logged_in ul {
+		padding: 0px;
+		margin: 0px;
+	}
+	nav.not_logged_in ul li {
+		display: inline-block;
+		margin: 0px 0.5em;
+	}
+/* / */
+
+
+/*
+	xx. COLORS - REF
+	@white: #ffffff
+	@dark: #333333
+	@offwhite: #e0f1ff -- baby blue, use on dark backgrounds
+	@blue: #1d82aa
+	@dkblue: #086492
+	@teal: #0eaaa6
+	@dkteal: #068b85
+	@purple: #9b156e
+	@dkpurple: #7e115f
+	@yellow: #eab134
+	@dkyellow: #dfa412
+	@red: #ea3d36
+	@dkred: #d22a2a
+*/

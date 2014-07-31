@@ -2,13 +2,40 @@
 <html>
 <head>
 	<title>Bookmark Manager</title>
+	<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 
-	<%= partial :welcome_message %>
-	<%= partial :flash %>
+	<header class="main">
 
-	<%= yield %>
+		<div class="inner">
+
+		<aside id="logo"><a href="/">Bookmark Manager.</a></aside>
+
+		<%= partial :welcome_message %>
+
+		<% if !current_user %>
+		<nav class="not_logged_in">
+			<ul>
+				<li><a href='/users/new' id='sign-up' class='btn btn-positive'>Sign up</a></li>
+				<li><a href='/sessions/new' id='sign-in' class='btn btn-neutral'>Sign in</a></li>
+			</ul>
+		</nav>
+		<% end %>
+
+		</div>
+
+	</header>
+
+	<section class="wrapper">
+
+		<%= partial :flash %>
+
+		<%= yield %>
+
+	</section>
 
 </body>
 </html>

@@ -24,8 +24,17 @@ get '/users/reset_password/request' do
 end
 
 post '/users/reset_password' do
-	generate_password_token_for params[:email]
-	redirect('/')
+	user = User.first(email: params[:email])
+
+	if user
+		puts generate_password_token_for params[:email]
+
+		flash[:notice] = "We have sent an email to #{params[:email]} with instructions on how to reset your password"
+		redirect('/')
+	else
+		flash[:notice] = "We could not find the email #{params[:email]} in our registered users"
+		erb :"users/reset_password/request"
+	end
 end
 
 get '/users/reset_password/token/:token' do
@@ -41,7 +50,7 @@ post '/users/reset_password/token' do
 		password_token: nil,
 		password_token_timestamp: nil)
 
-	redirect('/')
+	redirect('/sessions/new')
 end
 
 def generate_password_token_for email
@@ -49,4 +58,5 @@ def generate_password_token_for email
 	user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
 	user.password_token_timestamp = Time.now
 	user.save
+	user.password_token
 end
