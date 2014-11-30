@@ -17,6 +17,7 @@ Makers Academy project, week 6. An app that allows people to sign up and add boo
 * Users can sign in
 * Users can sign out
 * Users can add bookmarks with titles
+* Made progress on having user password reset: not featured on working app
 
 ## Try it
 In [Heroku](https://fierce-taiga-7369.herokuapp.com/)
